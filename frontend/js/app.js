@@ -169,8 +169,8 @@ function runSearch(q){
   $('#searchResults').innerHTML = results.map(p => `
     <div class="search-result-row" onclick="toggleSearch(false); navigate('product','${p.id}')">
       <img src="${p.img}" alt="">
-      <div><div style="font-size:14px;">${p.name}</div><div class="mono" style="font-size:12px;color:var(--ivory-faint)">${fmt(p.price)}</div></div>
-    </div>`).join('') || (q.length ? '<p style="color:var(--ivory-faint); padding:12px;">No pieces found. Try "watch" or "leather."</p>' : '');
+      <div><div style="font-size:14px;">${p.name}</div><div class="mono" style="font-size:12px;color:var(--dust)">${fmt(p.price)}</div></div>
+    </div>`).join('') || (q.length ? '<p style="color:var(--dust); padding:12px;">No pieces found. Try "watch" or "leather."</p>' : '');
 }
 
 /* ============ App Chrome ============ */
@@ -452,7 +452,7 @@ function renderHome(){
   </section>
 
   <section class="container" style="padding:40px 0 100px;">
-    <div class="glass" style="padding:60px; text-align:center; border-radius:var(--radius-xl); background: linear-gradient(135deg, rgba(92,26,27,0.15), rgba(168,117,74,0.08));">
+    <div class="glass" style="padding:60px; text-align:center; background:var(--sand); border:1px solid var(--rule);">
       <span class="eyebrow">Join the atelier list</span>
       <h2 class="lux-serif" style="font-size:clamp(24px,3vw,34px); margin:14px 0 10px;">First access to numbered editions</h2>
       <p style="color:var(--ivory-dim); margin-bottom:28px;">No noise — one dispatch a month, when there's something worth saying.</p>
@@ -1179,8 +1179,8 @@ function openOrderTrack(orderId){
         <div class="track-rail">
           ${stageLabels.map((l,i)=>`<div class="track-node ${i<currentIdx?'done':i===currentIdx?'active':''}"><div class="track-dot">${i<currentIdx?icon('check',11):''}</div><span class="track-label">${l}</span></div>`).join('')}
         </div>
-        <div class="card-panel" style="padding:16px; background:rgba(247,241,232,0.03); margin-top:8px;">
-          <p style="font-size:13px; color:var(--ivory-dim);">Status: <strong style="color:var(--ivory);">${o.status.charAt(0).toUpperCase()+o.status.slice(1)}</strong></p>
+        <div class="card-panel" style="padding:16px; background:var(--sand); margin-top:8px;">
+          <p style="font-size:13px; color:var(--ink-light);">Status: <strong style="color:var(--ink);">${o.status.charAt(0).toUpperCase()+o.status.slice(1)}</strong></p>
         </div>
       </div>
     </div>`);
