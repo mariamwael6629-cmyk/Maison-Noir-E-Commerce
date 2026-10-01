@@ -9,6 +9,14 @@ A luxury e-commerce storefront featuring a vanilla JS single-page application (S
 ```text
 ├── backend/    # FastAPI app (Auth, Products, Orders, Reviews, Wishlist, Promo Codes, Admin)
 └── frontend/   # Static SPA (HTML/CSS/Vanilla JS) that consumes the backend API
+    ├── index.html
+    ├── css/                # tokens, base, components, chrome, home, elements, pages, footer, responsive
+    └── js/
+        ├── vendor/         # lucide icons
+        ├── core/           # config, api client, state, utils, cart, chrome (nav/drawers), router
+        ├── components/     # shared product card
+        ├── views/          # home, catalog, product-detail, checkout, auth, user-dashboard, admin-dashboard, about
+        └── main.js         # Boot
 
 ```
 
@@ -48,7 +56,7 @@ uvicorn app.main:app --reload   # Runs server at [http://127.0.0.1:8000](http://
 
 ## 🎨 Frontend Setup
 
-The frontend is fully static and simply needs to be served. It communicates with the API using the URL configured in `frontend/js/config.js`.
+The frontend is fully static and simply needs to be served. It communicates with the API using the URL configured in `frontend/js/core/config.js`.
 
 ```bash
 cd frontend

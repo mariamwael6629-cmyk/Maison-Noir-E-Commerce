@@ -1,0 +1,88 @@
+/* ── CHECKOUT ────────────────────────────────────────────────── */
+.checkout-shell { display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: flex-start; }
+.stepper { display: flex; border: 1px solid var(--rule); margin-bottom: 32px; }
+.step { flex: 1; display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-right: 1px solid var(--rule); }
+.step:last-child { border-right: none; }
+.step-num { width: 28px; height: 28px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; color: var(--dust); flex-shrink: 0; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.step-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust); transition: color 0.2s; }
+.step.active { background: var(--sand); }
+.step.active .step-num { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.step.active .step-label { color: var(--ink); }
+.step.done .step-num { background: var(--copper); color: var(--paper); border-color: var(--copper); }
+.checkout-panel { display: none; }
+.checkout-panel.active { display: block; }
+.summary-line-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.summary-line-item img { width: 52px; height: 66px; object-fit: cover; border: 1px solid var(--rule); flex-shrink: 0; }
+.payment-option { display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid var(--rule); margin-bottom: 10px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.payment-option:hover { background: var(--sand); }
+.payment-option.active { border-color: var(--ink); background: var(--sand); }
+
+/* ── AUTH ────────────────────────────────────────────────────── */
+.auth-shell { min-height: calc(100vh - var(--nav-h) - 48px); display: flex; align-items: center; justify-content: center; padding: 60px 24px; }
+.auth-card { width: 100%; max-width: 440px; padding: 48px; }
+.auth-tabs { display: flex; margin-bottom: 28px; border-bottom: 1px solid var(--rule); }
+.auth-tab { flex: 1; text-align: center; padding: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
+.auth-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+.auth-tab:hover { color: var(--ink); }
+
+/* ── DASHBOARD ───────────────────────────────────────────────── */
+.dash-shell { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: flex-start; }
+.dash-sidebar { border: 1px solid var(--rule); padding: 24px; position: sticky; top: calc(var(--nav-h) + 24px); }
+.dash-profile { display: flex; align-items: center; gap: 14px; padding-bottom: 20px; margin-bottom: 16px; border-bottom: 1px solid var(--rule); }
+.dash-avatar { width: 40px; height: 40px; background: var(--sand); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 15px; font-style: italic; color: var(--ink); flex-shrink: 0; }
+.dash-nav-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust); transition: color 0.15s, background 0.15s; }
+.dash-nav-link:hover, .dash-nav-link.active { color: var(--ink); background: var(--sand); }
+.dash-panel { display: none; }
+.dash-panel.active { display: block; }
+
+/* ── ORDERS ──────────────────────────────────────────────────── */
+.order-row { display: flex; gap: 16px; padding: 18px 8px; border-bottom: 1px solid var(--rule); cursor: pointer; transition: background 0.15s; }
+.order-row:hover { background: var(--sand); }
+.order-row img { width: 52px; height: 66px; object-fit: cover; border: 1px solid var(--rule); flex-shrink: 0; }
+
+/* ── ORDER TRACKING MODAL ────────────────────────────────────── */
+.modal-overlay { position: fixed; inset: 0; z-index: 800; background: rgba(14,12,9,0.5); display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal-box { width: 100%; max-width: 500px; padding: 32px; max-height: 90vh; overflow-y: auto; }
+.track-rail { display: flex; justify-content: space-between; position: relative; padding: 20px 0 8px; margin-bottom: 20px; }
+.track-rail::before { content: ''; position: absolute; top: 34px; left: 14px; right: 14px; height: 1px; background: var(--rule); }
+.track-node { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 1; }
+.track-dot { width: 28px; height: 28px; border: 1.5px solid var(--rule); background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--dust); transition: all 0.2s; }
+.track-node.active .track-dot { border-color: var(--copper); background: var(--copper); color: var(--paper); }
+.track-node.done .track-dot { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.track-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust); text-align: center; }
+.track-node.active .track-label, .track-node.done .track-label { color: var(--ink); }
+
+/* ── STATUS DOT ──────────────────────────────────────────────── */
+.status-dot { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dust); padding: 4px 10px; border: 1px solid var(--rule); }
+.status-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--rule); flex-shrink: 0; }
+.status-dot.ok { color: var(--success); border-color: var(--success); }
+.status-dot.ok::before { background: var(--success); }
+.status-dot.pending { color: var(--copper); border-color: var(--copper); }
+.status-dot.pending::before { background: var(--copper); }
+.status-dot.alert { color: var(--danger); border-color: var(--danger); }
+.status-dot.alert::before { background: var(--danger); }
+
+/* ── ADMIN ───────────────────────────────────────────────────── */
+.admin-shell { display: flex; min-height: 100vh; }
+.admin-sidebar { width: 224px; flex-shrink: 0; background: var(--ink); padding: 28px 16px; display: flex; flex-direction: column; gap: 2px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.admin-sidebar .brand-mark { border-color: rgba(246,241,233,0.2); color: var(--paper); }
+.admin-sidebar .brand-name { color: var(--paper); }
+.admin-sidebar .dash-nav-link { color: rgba(246,241,233,0.45); }
+.admin-sidebar .dash-nav-link:hover, .admin-sidebar .dash-nav-link.active { color: var(--paper); background: rgba(246,241,233,0.07); }
+.admin-main { flex: 1; overflow-y: auto; background: var(--paper); }
+.admin-topbar { display: flex; justify-content: space-between; align-items: flex-start; padding: 28px 36px; border-bottom: 1px solid var(--rule); }
+.badge-dot-online { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--success); }
+.admin-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 28px; }
+.stat-card { background: var(--paper); padding: 24px 28px; }
+.stat-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); margin-bottom: 10px; }
+.stat-value { font-family: var(--font-mono); font-size: 26px; color: var(--ink); }
+.admin-chart-card { border: 1px solid var(--rule); padding: 24px 28px; }
+#adminContent { padding: 28px 36px; }
+
+/* ── TABLES ──────────────────────────────────────────────────── */
+.lux-table { width: 100%; border-collapse: collapse; }
+.lux-table th, .lux-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--rule); font-size: 13px; }
+.lux-table th { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); font-weight: 400; background: var(--sand); }
+.lux-table tr:hover td { background: var(--sand); }
+.row-img { width: 34px; height: 42px; object-fit: cover; border: 1px solid var(--rule); flex-shrink: 0; }

@@ -1,0 +1,48 @@
+/* ============================================================
+   MAISON NOIR — Design System
+   Cormorant Garamond · DM Sans · DM Mono
+   Paper / Ink — Editorial Luxury
+   ============================================================ */
+
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  /* Core palette */
+  --ink:        #0E0C09;
+  --ink-light:  #4A4540;
+  --paper:      #F6F1E9;
+  --sand:       #EAE2D4;
+  --rule:       #DDD7CC;
+  --dust:       #9A9087;
+  --copper:     #B07848;
+  --copper-muted: rgba(176,120,72,0.3);
+
+  /* Backward-compat aliases (inline styles in app.js reference these) */
+  --ivory:           var(--paper);
+  --ivory-dim:       var(--dust);
+  --ivory-faint:     rgba(154,144,135,0.7);
+  --charcoal:        var(--ink);
+  --charcoal-raised: var(--sand);
+  --hairline:        var(--rule);
+  --copper-bright:   var(--copper);
+  --copper-dim:      var(--copper-muted);
+  --burgundy:        #7A2020;
+  --burgundy-bright: var(--copper);
+
+  /* Status */
+  --success: #3E7A52;
+  --danger:  #962020;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Menlo', monospace;
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-pad: clamp(16px, 4vw, 80px);
+  --nav-h: 68px;
+
+  /* Motion */
+  --ease-lux:  cubic-bezier(0.25, 0, 0, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}

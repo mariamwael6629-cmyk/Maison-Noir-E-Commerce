@@ -1,0 +1,60 @@
+/* ── PRODUCT GRID & CARDS ────────────────────────────────────── */
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 20px; }
+.product-card { display: flex; flex-direction: column; cursor: pointer; }
+.product-media { position: relative; overflow: hidden; aspect-ratio: 3/4; border: 1px solid var(--rule); margin-bottom: 14px; background: var(--sand); }
+.img-front { position: absolute; inset: 0; transition: opacity 0.4s var(--ease-lux); }
+.img-back { position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s var(--ease-lux); }
+.product-card:hover .img-front { opacity: 0; }
+.product-card:hover .img-back { opacity: 1; }
+.product-tag { position: absolute; top: 12px; left: 12px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; z-index: 2; }
+.product-tag.new { background: var(--ink); color: var(--paper); }
+.product-tag.sale { background: var(--copper); color: var(--paper); }
+.product-fav { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; z-index: 2; color: rgba(14,12,9,0.35); background: none; border: none; cursor: pointer; transition: color 0.2s; }
+.product-fav:hover, .product-fav.active { color: var(--copper); }
+.product-quick-add { position: absolute; bottom: 0; left: 0; right: 0; background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; padding: 13px; transform: translateY(100%); transition: transform 0.3s var(--ease-lux); z-index: 2; }
+.product-card:hover .product-quick-add { transform: translateY(0); }
+.product-info { padding: 0 2px; }
+.product-cat { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dust); margin-bottom: 6px; }
+.product-name { font-family: var(--font-display); font-size: 16px; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+.product-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.product-price { font-family: var(--font-mono); font-size: 13px; color: var(--ink); }
+.product-price.was { color: var(--dust); text-decoration: line-through; font-size: 12px; }
+.product-swatches { display: flex; gap: 6px; }
+.swatch { width: 15px; height: 15px; border: 1.5px solid var(--rule); cursor: pointer; transition: border-color 0.15s; }
+.swatch.active { border: 2px solid var(--copper); }
+.swatch:hover { border-color: var(--ink); }
+
+/* ── FORMS ───────────────────────────────────────────────────── */
+.field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.field-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); }
+.field-input { width: 100%; background: var(--paper); border: 1px solid var(--rule); padding: 12px 14px; font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.15s; appearance: none; }
+.field-input:focus { border-color: var(--ink); }
+.field-input::placeholder { color: var(--dust); }
+.field-input:disabled { background: var(--sand); color: var(--dust); cursor: default; }
+.field-select { width: 100%; background: var(--paper); border: 1px solid var(--rule); padding: 12px 14px; font-size: 14px; color: var(--ink); outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239A9087' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 38px; }
+.field-select:focus { border-color: var(--ink); }
+.field-textarea { min-height: 120px; resize: vertical; }
+.field-hint { font-family: var(--font-mono); font-size: 11px; color: var(--dust); margin-top: 4px; }
+.checkbox-row { display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer; }
+
+/* ── TAB STRIP ───────────────────────────────────────────────── */
+.tab-strip { display: flex; border-bottom: 1px solid var(--rule); margin-bottom: 24px; }
+.tab-strip-item { padding: 11px 18px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
+.tab-strip-item:hover { color: var(--ink); }
+.tab-strip-item.active { color: var(--ink); border-bottom-color: var(--copper); }
+
+/* ── EMPTY STATE ─────────────────────────────────────────────── */
+.empty-state { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 40px; gap: 14px; color: var(--dust); }
+.empty-state h3 { font-family: var(--font-display); font-size: 22px; color: var(--ink-light); }
+.empty-state p { font-size: 13px; color: var(--dust); max-width: 320px; }
+
+/* ── SEAL DIVIDER ────────────────────────────────────────────── */
+.seal-divider { display: flex; align-items: center; gap: 16px; }
+.seal-divider .line { flex: 1; height: 1px; background: var(--rule); }
+.seal-divider .mark { width: 8px; height: 8px; border: 1px solid var(--rule); transform: rotate(45deg); flex-shrink: 0; }
+
+/* ── STARS · PILL ────────────────────────────────────────────── */
+.stars { display: inline-flex; gap: 2px; }
+.stars svg { width: 13px; height: 13px; color: var(--copper); }
+.pill { display: inline-flex; align-items: center; padding: 3px 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--rule); color: var(--dust); }
