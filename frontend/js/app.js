@@ -308,7 +308,7 @@ function renderChrome(){
       </div>
       <div class="footer-bottom">
         <span>© 2026 Maison Noir. All rights reserved.</span>
-        <span>Crafted with restraint, in charcoal and copper.</span>
+        <span>Made in small runs in Lisbon, Florence and Kyoto.</span>
       </div>
     </div>
   </footer>
@@ -373,7 +373,7 @@ function renderHome(){
       <div class="hero-content">
         <div>
           <div class="hero-eyebrow"><span class="eyebrow">Spring Collection — No. 14</span></div>
-          <h1>Objects worth <em>keeping</em>,<br>not just owning.</h1>
+          <h1>Objects made to be <em>kept</em>.</h1>
           <p class="hero-sub">Leather goods, timepieces, and fragrance made in small runs across three ateliers. Every piece is numbered. Nothing is reordered twice the same way.</p>
           <div class="hero-cta-row">
             <button class="btn btn-primary" onclick="navigate('catalog','all')">Shop the Collection ${icon('arrow-right',15)}</button>
@@ -386,6 +386,7 @@ function renderHome(){
           </div>
         </div>
         <div class="hero-visual">
+          <div class="hero-dial" id="heroDial" role="img" aria-label="The time where you are">${dialSvg()}</div>
           <div class="hero-visual-frame"><img src="${DECOR_IMG.heroPortrait}" alt="Model wearing the Almeida Tote"></div>
           <div class="hero-float-card glass">
             <div class="fc-icon">${icon('badge-check',18)}</div>
@@ -405,7 +406,7 @@ function renderHome(){
   <section class="container" style="padding:100px 0 80px;">
     <div class="section-head">
       <div><span class="eyebrow">Curated for the season</span><h2>Featured Collections</h2></div>
-      <p>Three rooms, three moods — chosen by our atelier directors this month.</p>
+      <p>Four rooms, picked by our atelier directors this month.</p>
     </div>
     <div class="collection-grid">
       <div class="collection-tile" onclick="navigate('catalog','leather')">
@@ -436,7 +437,7 @@ function renderHome(){
       <div>
         <span class="eyebrow">From the Atelier Journal</span>
         <h2 class="lux-serif" style="font-size:clamp(26px,3.4vw,38px); margin-top:12px; line-height:1.3;">"We measure success in repairs requested, not units replaced."</h2>
-        <p style="color:var(--ivory-dim); margin-top:20px; line-height:1.7; max-width:480px;">Every Maison Noir piece ships with a lifetime repair card. Send it back in twenty years — we'll still have the pattern.</p>
+        <p style="color:var(--ivory-dim); margin-top:20px; line-height:1.7; max-width:480px;">Every Maison Noir piece ships with a lifetime repair card. Send it back in twenty years and we'll still have the pattern.</p>
         <button class="btn btn-burgundy" style="margin-top:28px;" onclick="navigate('about')">Read Our Philosophy</button>
       </div>
       <div class="hero-visual-frame" style="aspect-ratio:5/4;"><img src="${DECOR_IMG.bag2}" alt="Craftsmanship detail"></div>
@@ -446,7 +447,7 @@ function renderHome(){
   <section class="container" style="padding:100px 0 60px;">
     <div class="section-head">
       <div><span class="eyebrow">Most loved</span><h2>Best Sellers</h2></div>
-      <p>Chosen by repeat orders, not algorithms.</p>
+      <p>Ranked by how often people come back for them.</p>
     </div>
     <div class="product-grid">${bestSellers.map(renderProductCard).join('')}</div>
   </section>
@@ -455,7 +456,7 @@ function renderHome(){
     <div class="glass" style="padding:60px; text-align:center; background:var(--sand); border:1px solid var(--rule);">
       <span class="eyebrow">Join the atelier list</span>
       <h2 class="lux-serif" style="font-size:clamp(24px,3vw,34px); margin:14px 0 10px;">First access to numbered editions</h2>
-      <p style="color:var(--ivory-dim); margin-bottom:28px;">No noise — one dispatch a month, when there's something worth saying.</p>
+      <p style="color:var(--ivory-dim); margin-bottom:28px;">One letter a month, and only when there's something worth saying.</p>
       <form style="display:flex; gap:12px; max-width:420px; margin:0 auto; flex-wrap:wrap;" onsubmit="event.preventDefault(); showToast('Welcome to the list', 'Check your inbox for a confirmation.', 'success'); this.reset();">
         <input type="email" required placeholder="you@email.com" class="field-input" style="flex:1; min-width:200px;">
         <button class="btn btn-primary" type="submit">Subscribe</button>
@@ -464,7 +465,37 @@ function renderHome(){
   </section>
   `;
 }
-function initHomeAnimations(){ /* reserved for future scroll-reveal hooks */ }
+function initHomeAnimations(){ setDialHands(); }
+
+/* Hero dial: shows the visitor's local time, ticks over each second */
+function dialSvg(){
+  let ticks = '';
+  for(let i=0;i<60;i++){
+    const hour = i % 5 === 0;
+    ticks += `<line class="tick${hour?' hour':''}" x1="50" y1="${hour?6:7}" x2="50" y2="${hour?13:10}" stroke-width="${hour?1.8:0.6}" transform="rotate(${i*6} 50 50)"/>`;
+  }
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">${ticks}
+    <text class="dial-word" x="50" y="34" text-anchor="middle">MAISON NOIR</text>
+    <line class="hand hr" x1="50" y1="50" x2="50" y2="28" stroke-width="3"/>
+    <line class="hand min" x1="50" y1="50" x2="50" y2="17" stroke-width="2"/>
+    <line class="hand sec" x1="50" y1="58" x2="50" y2="14" stroke-width="0.8"/>
+    <circle class="pin" cx="50" cy="50" r="2.4"/></svg>`;
+}
+let dialTimer = null;
+function setDialHands(){
+  const dial = document.getElementById('heroDial');
+  clearInterval(dialTimer);
+  if(!dial) return;
+  const tick = () => {
+    if(!document.body.contains(dial)){ clearInterval(dialTimer); return; }
+    const d = new Date(), s = d.getSeconds(), m = d.getMinutes() + s/60, h = (d.getHours()%12) + m/60;
+    dial.querySelector('.hr').style.transform = `rotate(${h*30}deg)`;
+    dial.querySelector('.min').style.transform = `rotate(${m*6}deg)`;
+    dial.querySelector('.sec').style.transform = `rotate(${s*6}deg)`;
+  };
+  tick();
+  dialTimer = setInterval(tick, 1000);
+}
 
 /* ============ Product Card (shared) ============ */
 function renderProductCard(p){
@@ -674,7 +705,7 @@ async function renderProductDetail(id){
               <div><strong style="font-size:14px;">${r.name}</strong> ${r.verified ? `<span class="pill" style="font-size:10px; padding:3px 8px; margin-left:6px; border-color:var(--copper-dim); color:var(--copper-bright);">Verified</span>` : ''}</div>
               <span style="font-size:12px; color:var(--ivory-faint);">${r.date}</span>
             </div>
-            <span class="stars" style="margin-bottom:8px; display:block;">${stars(r.rating)}</span>
+            <span class="stars" style="margin-bottom:8px; display:flex;">${stars(r.rating)}</span>
             <p style="font-size:13.5px; color:var(--ivory-dim); line-height:1.7;">${r.text}</p>
           </div>`).join('') : `<p style="color:var(--ivory-faint);">No written reviews yet for this piece — the rating reflects verified buyers.</p>`}
       </div>
