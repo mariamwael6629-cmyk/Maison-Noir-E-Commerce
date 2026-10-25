@@ -717,3 +717,10 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 @media (max-width: 520px) {
   #mainView [style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 20px !important; }
 }
+
+/* Phone header: five 44px icons plus the wordmark do not fit in 390px.
+   Wishlist stays reachable from the account page. */
+@media (max-width: 480px) {
+  .nav-wish { display: none; }
+  .nav-actions .btn-icon { width: 40px; height: 40px; }
+}

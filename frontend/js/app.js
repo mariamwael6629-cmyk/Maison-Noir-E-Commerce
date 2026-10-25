@@ -225,7 +225,7 @@ function renderChrome(){
       </div>
       <div class="nav-actions">
         <button class="btn-icon" onclick="toggleSearch(true)" aria-label="Search">${icon('search',18)}</button>
-        <button class="btn-icon" onclick="navigate('dashboard','wishlist')" aria-label="Wishlist" style="position:relative;">${icon('heart',18)}<span class="nav-badge" id="wishBadge" style="display:none;">0</span></button>
+        <button class="btn-icon nav-wish" onclick="navigate('dashboard','wishlist')" aria-label="Wishlist" style="position:relative;">${icon('heart',18)}<span class="nav-badge" id="wishBadge" style="display:none;">0</span></button>
         <button class="btn-icon" onclick="navigate('account')" aria-label="Account">${icon('user',18)}</button>
         <button class="btn-icon" onclick="toggleCart(true)" aria-label="Shopping bag" style="position:relative;">${icon('shopping-bag',18)}<span class="nav-badge" id="cartBadge" style="display:none;">0</span></button>
         <button class="btn-icon hamburger" onclick="toggleMobileNav(true)" aria-label="Menu">${icon('menu',18)}</button>
